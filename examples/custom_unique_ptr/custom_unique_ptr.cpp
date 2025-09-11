@@ -57,7 +57,7 @@ public:
 };
 
 
-struct Test {
-    void Hello() { std::cout << "Hello from Test!\n"; }
+struct Temp {
+    void Hello() { std::cout << "Hello temp!\n"; }
 };
 
