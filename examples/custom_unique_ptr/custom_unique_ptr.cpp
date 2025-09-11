@@ -65,7 +65,7 @@ int main() {
 	MyUniquePtr<Temp> ptr1(new Temp());
 	ptr1->Hello();
 
-	MyUniquePtr<Temp> ptr2 = std::move(ptr1);
+	MyUniquePtr<Temp> ptr2 = std::move(ptr1); //move ownership from ptr1 to ptr2
 	
     if (!ptr1.Get()) {
 		std::cout << "ptr1 was moved to ptr2 and now is null \n";
@@ -77,6 +77,13 @@ int main() {
 		std::cout << "ptr2 was released and pass owner to raw_ptr  and now is null \n";
 	}
 	raw_ptr->Hello(); // call method from raw pointer
+
+
+    Temp& tempRef = *raw_ptr; //derreference raw pointer to get reference 
+                              //and giving you the actual  object it points to
+   
+    tempRef.Hello(); // call method from reference
+    raw_ptr->Hello(); // call method from pointer
 
 	return 0;
 }
