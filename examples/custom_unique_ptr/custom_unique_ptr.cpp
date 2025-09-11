@@ -9,7 +9,6 @@ private:
     T* ptr; 
 
 public:
-   
     explicit MyUniquePtr(T* p = nullptr) : ptr(p) {}
   
     MyUniquePtr(const MyUniquePtr&) = delete;
@@ -66,9 +65,17 @@ int main() {
 		std::cout << "ptr1 was moved to ptr2 and now is null \n";
 	}
 
-	Temp* raw_ptr = ptr2.Release();
+    MyUniquePtr<Temp> ptr3(new Temp());
+    MyUniquePtr<Temp> ptr4(new Temp());
+    MyUniquePtr<Temp> ptr5(nullptr);
+
+    ptr3 = std::move(ptr4); //std::move(ptr1) casts ptr1 to an rvalue reference (MyUniquePtr&&)
+
+    ptr5 = MyUniquePtr<Temp>(new Temp()); // move assignment from a temporary MyUniquePtr
+
+	Temp* raw_ptr = ptr5.Release();
 	
-    if (!ptr2.Get()) {
+    if (!ptr5.Get()) {
 		std::cout << "ptr2 was released and pass owner to raw_ptr  and now is null \n";
 	}
 	raw_ptr->Hello(); // call method from raw pointer
@@ -76,7 +83,6 @@ int main() {
 
     Temp& tempRef = *raw_ptr; //derreference raw pointer to get reference 
                               //and giving you the actual  object it points to
-   
     tempRef.Hello(); // call method from reference
     raw_ptr->Hello(); // call method from pointer
 
