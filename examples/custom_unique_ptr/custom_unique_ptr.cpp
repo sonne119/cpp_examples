@@ -11,11 +11,9 @@ private:
 public:
    
     explicit MyUniquePtr(T* p = nullptr) : ptr(p) {}
-
-   
+  
     MyUniquePtr(const MyUniquePtr&) = delete;
     MyUniquePtr& operator=(const MyUniquePtr&) = delete;
-
     
     MyUniquePtr(MyUniquePtr&& other) noexcept : ptr(other.ptr) {
         other.ptr = nullptr;
@@ -29,17 +27,14 @@ public:
         }
         return *this;
     }
-
   
     ~MyUniquePtr() {
         delete ptr;
     }
 
-
     T& operator*() const {
         return *ptr;
     }
-
 
     T* operator->() const {
         return ptr;
@@ -63,7 +58,7 @@ struct Temp {
 
 int main() {
 	MyUniquePtr<Temp> ptr1(new Temp());
-	ptr1->Hello();
+	ptr1->Hello(); // call method from unique pointer
 
 	MyUniquePtr<Temp> ptr2 = std::move(ptr1); //move ownership from ptr1 to ptr2
 	
