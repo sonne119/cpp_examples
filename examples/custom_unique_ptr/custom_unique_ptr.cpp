@@ -69,7 +69,7 @@ int main() {
     MyUniquePtr<Temp> ptr4(new Temp());
     MyUniquePtr<Temp> ptr5(nullptr);
 
-    ptr3 = std::move(ptr4); //std::move(ptr1) casts ptr1 to an rvalue reference (MyUniquePtr&&)
+    ptr3 = std::move(ptr4); //std::move(ptr4) casts ptr4 to an rvalue reference (MyUniquePtr&&)
 
     ptr5 = MyUniquePtr<Temp>(new Temp()); // move assignment from a temporary MyUniquePtr
 
