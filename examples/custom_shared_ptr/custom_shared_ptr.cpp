@@ -23,9 +23,9 @@ public:
 
 	MySharedPtr(MySharedPtr&& other) = delete;
 
-	MySharedPtr& operator=(MySharedPtr&& other) = delete;  // first implementation
+	MySharedPtr& operator=(MySharedPtr&& other) = delete;  
 
-	//   MySharedPtr& operator=(const MySharedPtr& other) noexcept {
+	//   MySharedPtr& operator=(const MySharedPtr& other) noexcept {   // first implementation
 	   //	if (this != &other) {
 	   //		release(); 
 	   //		ptr = other.ptr;
