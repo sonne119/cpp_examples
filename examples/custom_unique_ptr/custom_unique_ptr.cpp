@@ -23,6 +23,7 @@ public:
             delete ptr;        
             ptr = other.ptr;   
             other.ptr = nullptr;
+           // m_ptr = std::exchange(other.m_ptr, nullptr);
         }
         return *this;
     }
