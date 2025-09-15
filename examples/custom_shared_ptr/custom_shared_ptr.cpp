@@ -23,7 +23,7 @@ public:
 
 	MySharedPtr(MySharedPtr&& other) = delete;
 
-	MySharedPtr& operator=(MySharedPtr&& other) = delete;
+	MySharedPtr& operator=(MySharedPtr&& other) = delete;  // first implementation
 
 	//   MySharedPtr& operator=(const MySharedPtr& other) noexcept {
 	   //	if (this != &other) {
@@ -37,8 +37,8 @@ public:
 	   //	return *this;
 	   //}
 
-	MySharedPtr& operator=(MySharedPtr other) noexcept {
-		swap(other);
+	MySharedPtr& operator=(MySharedPtr other) noexcept { // pass copy by value
+		swap(other);                                     //second implementation     
 		return *this;
 	}
 
