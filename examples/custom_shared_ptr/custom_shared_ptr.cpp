@@ -87,8 +87,8 @@ struct Temp {
 int main() {
 
 	MySharedPtr<Temp> ptr1(new Temp{ 10 });   //Default constructor
-	ptr1->Hello();
-	(*ptr1).value = 55;
+	ptr1->Hello();                             //operator->
+	(*ptr1).value = 55;                        //operator*
 	std::cout << "ptr1 value after: " << ptr1->value << "\n";
 
 	std::cout << "ptr1 ref_count: " << ptr1.Get() << "\n";
@@ -102,6 +102,8 @@ int main() {
 	ptr3 = ptr1;                              // copy assignment
 	std::cout << "ptr1 ref_count: " << ptr1.Get() << "\n";
 	std::cout << "ptr3 ref_count after: " << ptr3.Get() << "\n";
+
+	std::cout << "ptr3 ref_count after: " << (*ptr3).value << "\n";
 
 	return 0;
 }
