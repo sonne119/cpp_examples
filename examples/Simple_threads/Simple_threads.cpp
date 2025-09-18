@@ -21,7 +21,7 @@ public:
 
 	void increment_of_range(int n, std::vector<int>& vec, size_t start, size_t end)
 	{
-		for (size_t i = start; i < end && i < vec.size(); i++)
+		for (size_t i = start; i < end; i++)
 		{
 			vec[i] += n;
 		}
@@ -61,7 +61,7 @@ int main()
 	size_t start = 0;
 	size_t end = sizePart;
 
-	for (int i = 0, start = 0, end = sizePart; i < 3; ++i, start, end ) {
+	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start, end ) {
 		 threads.push_back(std::make_unique<std::thread>([&a_obj, &n, &vec, start, end]() {
 			a_obj.increment_of_range(n, vec, start, end);
 			}));
