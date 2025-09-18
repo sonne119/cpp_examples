@@ -19,9 +19,9 @@ public:
 	A(T* obj) : t_obj(obj) {}
 	~A() = default;
 
-	void increment_of_range(int& n, std::vector<int>& vec, size_t start, size_t end)
+	void increment_of_range(int n, std::vector<int>& vec, size_t start, size_t end)
 	{
-		for (size_t i = 0; i < vec.size(); i++)
+		for (size_t i = start; i < end && i < vec.size(); i++)
 		{
 			vec[i] += n;
 		}
@@ -56,17 +56,23 @@ int main()
 
 	size_t sizePart = vec.size() / 4;
 	size_t start = 0;
+	std::thread thread;
 
 	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start += sizePart, end += sizePart) {
-		auto thread = std::thread([&a_obj, &n, &vec, start, end]() {
+		 threads.push_back(std::make_unique<std::thread>([&a_obj, &n, &vec, start, end]() {
 			a_obj.increment_of_range(n, vec, start, end);
-			});
-		if (thread.joinable())
-			thread.join();
+			}));
+
 		start += sizePart;
 		end += sizePart;
-
 	}
+	for (auto& thread : threads) {
+		if (thread->joinable()) {
+			thread->join();
+		}
+	}
+	
+
 	a_obj.print_vector(vec);
 	
 	a_obj.callTheEnd();
