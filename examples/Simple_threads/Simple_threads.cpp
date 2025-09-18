@@ -47,7 +47,10 @@ int main()
 	std::vector<std::unique_ptr<std::thread>> threads;
 	threads.reserve(4);
 
-	std::vector<int> vec(1000);
+	std::vector<int> vec;
+	vec.reserve(2000); 
+	vec.resize(1000);
+
 	initializeVector(vec);
 
 
@@ -56,9 +59,9 @@ int main()
 
 	size_t sizePart = vec.size() / 4;
 	size_t start = 0;
-	std::thread thread;
+	size_t end = sizePart;
 
-	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start += sizePart, end += sizePart) {
+	for (int i = 0, start = 0, end = sizePart; i < 3; ++i, start, end ) {
 		 threads.push_back(std::make_unique<std::thread>([&a_obj, &n, &vec, start, end]() {
 			a_obj.increment_of_range(n, vec, start, end);
 			}));
