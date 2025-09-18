@@ -48,7 +48,7 @@ int main()
 	threads.reserve(4);
 
 	std::vector<int> vec;
-	vec.reserve(2000); 
+	vec.reserve(1500); 
 	vec.resize(1000);
 
 	initializeVector(vec);
@@ -58,8 +58,6 @@ int main()
 	A<Temp> a_obj(&t);
 
 	size_t sizePart = vec.size() / 4;
-	size_t start = 0;
-	size_t end = sizePart;
 
 	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start, end ) {
 		 threads.push_back(std::make_unique<std::thread>([&a_obj, &n, &vec, start, end]() {
