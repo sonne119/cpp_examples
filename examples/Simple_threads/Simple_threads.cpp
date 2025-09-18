@@ -47,10 +47,8 @@ int main()
 	std::vector<std::unique_ptr<std::thread>> threads;
 	threads.reserve(4);
 
-	std::vector<int> vec;
+	std::vector<int> vec(1000);
 	vec.reserve(1500); 
-	vec.resize(1000);
-
 	initializeVector(vec);
 
 
@@ -70,7 +68,6 @@ int main()
 		}
 	}
 	
-
 	a_obj.print_vector(vec);
 	
 	a_obj.callTheEnd();
