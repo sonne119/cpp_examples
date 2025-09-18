@@ -59,13 +59,10 @@ int main()
 
 	size_t sizePart = vec.size() / 4;
 
-	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start, end ) {
+	for (int i = 0, start = 0, end = sizePart; i < 4; ++i, start += sizePart, end += sizePart) {
 		 threads.push_back(std::make_unique<std::thread>([&a_obj, &n, &vec, start, end]() {
 			a_obj.increment_of_range(n, vec, start, end);
 			}));
-
-		start += sizePart;
-		end += sizePart;
 	}
 	for (auto& thread : threads) {
 		if (thread->joinable()) {
